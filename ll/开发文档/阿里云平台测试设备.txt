@@ -1,0 +1,19 @@
+产品：摄像头测试{
+
+	SXT_TEST_001{
+	  "ProductKey": "a1BlCDopmWO",
+	  "DeviceName": "STX_001",
+	  "DeviceSecret": "qkKZmTyPJf4sIQz775n2lTlHINnKb1Gr"
+	},
+		LG_001{
+	  "ProductKey": "a1M0PwYMMNz",
+	  "DeviceName": "LG_001",
+	  "DeviceSecret": "mLCaIwvPEv5N6XN1ai67SZTaKGmyzxkH"
+	}
+
+}
+
+
+AccessKey{
+	cn-shanghai
+}

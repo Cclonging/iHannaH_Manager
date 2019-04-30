@@ -1,0 +1,20 @@
+网关接入iot平台
+https://help.aliyun.com/product/93051.html?spm=a2c4g.11186623.2.10.6ad95023MKJog3
+
+
+一机一型，一机一密都是针对已经烧录标识的设备而言的
+对于没有烧录的设备，目前可以采用动态注册， 但最后还是得烧录。。。
+一型一密：
+https://help.aliyun.com/document_detail/74006.html?spm=a2c4g.11186623.6.645.743f5483rQBWpI
+一机一密：
+https://help.aliyun.com/document_detail/74005.html?spm=a2c4g.11186623.2.11.6ad95023JPolSo#concept-nj5-4wg-12b
+动态注册：
+https://help.aliyun.com/document_detail/42649.html?spm=a2c4g.11186623.2.12.6ad95023VFbBH1#concept-fqy-pjl-vdb
+
+
+
+设备端C sdk
+https://code.aliyun.com/linkkit/c-sdk/repository/archive.zip?spm=a2c4g.11186623.2.15.1902492b9g6jDR&ref=v3.0.1
+设备端java sdk
+
+服务器端java sdk
