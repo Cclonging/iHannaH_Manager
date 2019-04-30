@@ -1,0 +1,40 @@
+server:
+  port: 8087
+  ssl:
+    key-store: 1963206.jks
+    key-password: EMvXqSJ5
+    key-store-type: JKS
+
+#jdbc config
+spring:
+  dataSource:
+    hanner:
+      driver-class-name: com.mysql.jdbc.Driver
+      jdbc-url: jdbc:mysql://localhost:3306/hannah_dev?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&serverTimezone=GMT
+      username: root
+      password: "034816"
+
+    manager:
+      driver-class-name: com.mysql.jdbc.Driver
+      jdbc-url: jdbc:mysql://localhost:3306/manager_dev?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&serverTimezone=GMT
+      username: root
+      password: "034816"
+
+
+  thymeleaf:
+    cache: false
+
+  mvc:
+    view:
+      suffix: .html
+  data:
+    mongodb:
+      uri: mongodb://127.0.0.1:27017/runoob
+
+logging:
+  level:
+   com:
+    withmes: trace
+  path: logs/manager.log
+
+

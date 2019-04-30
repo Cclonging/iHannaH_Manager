@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>资源管理平台</title>
+	<link rel="stylesheet" href="./vendor/simple-line-icons/css/simple-line-icons.css">
+	<link rel="stylesheet" href="./vendor/font-awesome/css/fontawesome-all.min.css">
+	<link rel="stylesheet" href="./css/styles.css">
+</head>
+<body class="sidebar-fixed header-fixed">
+<div class="page-wrapper">
+	<nav class="navbar page-header">
+		<a href="#" class="btn btn-link sidebar-mobile-toggle d-md-none mr-auto">
+			<i class="fa fa-bars"></i>
+		</a>
+
+		<a class="navbar-brand" href="#">
+			H A N N A H
+		</a>
+
+		<a href="#" class="btn btn-link sidebar-toggle d-md-down-none">
+			<i class="fa fa-bars"></i>
+		</a>
+
+		<ul class="navbar-nav ml-auto">
+			<li class="nav-item d-md-down-none">
+				<a href="#">
+					<i class="fa fa-bell"></i>
+					<span class="badge badge-pill badge-danger">1</span>
+				</a>
+			</li>
+
+			<li class="nav-item d-md-down-none">
+				<a href="#">
+					<i class="fa fa-envelope-open"></i>
+					<span class="badge badge-pill badge-danger">2</span>
+				</a>
+			</li>
+
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<img src="./imgs/avatar-1.png" class="avatar avatar-sm" alt="logo">
+					<span class="small ml-1 d-md-down-none" id="show_account"></span>
+				</a>
+
+				<div class="dropdown-menu dropdown-menu-right">
+					<div class="dropdown-header">账户</div>
+
+					<a href="#" class="dropdown-item" id="notification">
+						<i class="fa fa-envelope"></i> 消息通知
+					</a>
+
+					<div class="dropdown-header" >设置</div>
+
+
+
+					<a href="/quit" class="dropdown-item" id="quit">
+						<i class="fa fa-lock"></i> 退出
+					</a>
+				</div>
+			</li>
+		</ul>
+	</nav>
+
+	<div class="main-container">
+		<div class="sidebar">
+			<nav class="sidebar-nav">
+				<ul class="nav">
+					<li class="nav-title">菜单</li>
+
+					<li class="nav-item">
+						<a id="index" href="/hh_manager" class="nav-link active">
+							<i class="icon icon-speedometer"></i> 首页
+						</a>
+					</li>
+
+
+					<li class="nav-item nav-dropdown">
+						<a href="#" class="nav-link nav-dropdown-toggle">
+							<i class="icon icon-graph"></i> 数据分析 <i class="fa fa-caret-left"></i>
+						</a>
+
+						<ul class="nav-dropdown-items">
+							<li class="nav-item">
+								<a href="javascript:;" onclick="al.renderContent2Activie();" class="nav-link" id="active">
+									<i class="icon icon-graph"></i> 用户行为分析
+								</a>
+							</li>
+						</ul>
+						<ul class="nav-dropdown-items">
+							<li class="nav-item">
+								<a href="javascript:;" onclick="al.renderContent2Resources();" class="nav-link" id="resources">
+									<i class="icon icon-graph"></i> 资源分析
+								</a>
+							</li>
+						</ul>
+						<ul class="nav-dropdown-items">
+							<li class="nav-item">
+								<a href="javascript:;" onclick="al.renderContent2Flow();" class="nav-link" id="flow">
+									<i class="icon icon-graph"></i> 流量分析
+								</a>
+							</li>
+						</ul>
+						<ul class="nav-dropdown-items">
+							<li class="nav-item">
+								<a href="javascript:;" onclick="al.renderContent2Vitality();" class="nav-link" id="vitality">
+									<i class="icon icon-graph"></i> 活跃度分析
+								</a>
+							</li>
+						</ul>
+					</li>
+
+
+					<li class="nav-item nav-dropdown">
+						<a href="#" class="nav-link nav-dropdown-toggle">
+							<i class="icon icon-energy"></i>用户管理<i class="fa fa-caret-left"></i>
+						</a>
+
+						<ul class="nav-dropdown-items">
+							<li class="nav-item">
+								<a href="javascript:;" onclick="al.renderContent2AllUsers(0);" class="nav-link" id="allUsers">
+									<i class="icon icon-energy"></i> 全部用户
+								</a>
+							</li>
+
+							<li class="nav-item">
+								<a href="javascript:;" onclick="al.renderContent2Illegal(0);" class="nav-link" id="illegal">
+									<i class="icon icon-energy"></i> 违规言论
+								</a>
+							</li>
+
+							<li class="nav-item">
+								<a href="javascript:;" onclick="al.renderContent2Ban();"class="nav-link" id="ban">
+									<i class="icon icon-energy"></i> 封号设置
+								</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+		</div>
+
+
+
+		<div class="content" id="content">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-3">
+						<div class="card p-4">
+							<div class="card-body d-flex justify-content-between align-items-center">
+								<div>
+									<span class="h4 d-block font-weight-normal mb-2" id="totalUsers"></span>
+									<span class="font-weight-light">总用户数</span>
+								</div>
+
+								<div class="h2 text-muted">
+									<i class="icon icon-people"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-3">
+						<div class="card p-4">
+							<div class="card-body d-flex justify-content-between align-items-center">
+								<div>
+									<span class="h4 d-block font-weight-normal mb-2" id="curUsers">3</span>
+									<span class="font-weight-light">在线人数</span>
+								</div>
+
+								<div class="h2 text-muted">
+									<i class="icon icon-wallet"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-3">
+						<div class="card p-4">
+							<div class="card-body d-flex justify-content-between align-items-center">
+								<div>
+									<span class="h4 d-block font-weight-normal mb-2" id="server_max"></span>
+									<span class="font-weight-light">服务器核载</span>
+								</div>
+
+								<div class="h2 text-muted">
+									<i class="icon icon-cloud-download"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-3">
+						<div class="card p-4">
+							<div class="card-body d-flex justify-content-between align-items-center">
+								<div>
+									<span class="h4 d-block font-weight-normal mb-2" id="curIlle"></span>
+									<span class="font-weight-light">被封用户数</span>
+								</div>
+
+								<div class="h2 text-muted">
+									<i class="icon icon-clock"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row ">
+					<div class="col-md-12">
+						<div class="card">
+							<div class="card-header">
+								周活跃用户数
+							</div>
+
+							<div class="card-body p-0">
+								<div class="p-4">
+									<canvas id="line-chart" width="100%" height="20"></canvas>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 模态框1（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<h4 class="modal-title" id="myModalLabel">
+					详细资料
+				</h4>
+			</div>
+			<div class="modal-body">
+				<ul class="list-group">
+					<li class="list-group-item"><label>id：</label><span id="md_id"></span></li>
+					<li class="list-group-item"><label>用户名：</label><span id="md_name"></span></li>
+					<li class="list-group-item"><label>昵称：</label><span id="md_nick"></span></li>
+					<li class="list-group-item"><label>头像地址：</label><span id="md_face"></span></li>
+					<li class="list-group-item"><label>违规次数：</label><span id="md_irs"></span></li>
+					<li class="list-group-item"><label>创建日期：</label><span id="md_date"></span></li>
+					<li class="list-group-item"><label>数据节点：</label><span id="md_dl"></span></li>
+					<li class="list-group-item"><label>状态：</label><span id="md_status"></span></li>
+				</ul>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-warning">
+					封号
+				</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+				</button>
+
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+</div>
+
+<!-- 模态框2（Modal） -->
+<div class="modal fade" id="conModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<h4 class="modal-title" >
+					详细内容
+				</h4>
+			</div>
+			<div class="modal-body">
+				<span class="p-0" id="model_detail"></span>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+				</button>
+
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+</div>
+
+<script src="./vendor/jquery/jquery.min.js"></script>
+<script src="./vendor/popper.js/popper.min.js"></script>
+<script src="./vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="./vendor/chart.js/chart.min.js"></script>
+<script src="./js/carbon.js"></script>
+<script src="./js/demo.js"></script>
+<script src="./js/al.js"></script>
+<script src="./js/index.js"></script>
+</body>
+</html>
