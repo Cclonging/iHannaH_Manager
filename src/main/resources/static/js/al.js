@@ -7,7 +7,7 @@ window.al = {
         console.log("page: " + page)
         $.ajax({
             type: "GET",
-            url: "/data/getAllUsers?curPage=" + page,
+            url: "/data/getAllUsers/" + page + "/info",
             dataType: "json",
             success: function (result) {
                 if (result.status == 500){
@@ -45,10 +45,13 @@ window.al = {
                         "                                    <tbody>";
                         var serverName = result.data.serverName;
                         for (var i = 0; i < data.length; i++){
+                            var isOnline = "离线";
+                            if (data[i].isOnline == 1)
+                                isOnline = "在线";
                             htmls += "<tr><td>" + (i + 1) +
                                 "</td><td class='text-nowrap'><a onclick=\"al.openModel('" + data[i].id +"')\">" + data[i].id + "</a></td><td>" + data[i].username +
                                 "</td><td>" + data[i].nickname + "</td><td>" + serverName +
-                                "</td><td>在线</td><td><button class='btn btn-rounded btn-warning' onclick=\"al.banUser('"+ data[i].id + "','" + data[i].username + "')\">封号</button></td></tr>";
+                                "</td><td>"+ isOnline + "</td><td><button class='btn btn-rounded btn-warning' onclick=\"al.banUser('"+ data[i].id + "','" + data[i].username + "')\">封号</button></td></tr>";
                         }
                         var page = result.data.page;
                         var curPage = page.curPage;
@@ -239,7 +242,7 @@ window.al = {
     requestApi: function (id, page) {
         $.ajax({
             type: "GET",
-            url: "/data/getUser?id=" + id + "&curPage=" + page,
+            url: "/data/getUser/" + id + "/" + page + "/info",
             dataType: "json",
             success: function (result) {
                 if (result.status == 500){
@@ -350,21 +353,24 @@ window.al = {
 
         $.ajax({
             type: "GET",
-            url: "/data/getUserByid?id=" + id,
+            url: "/data/getUserByid/" + id + "/info",
             dataType: "json",
             success: function (result) {
                 if (result.status == 500){
                     alert("500 " + result.msg);
                 }
                 if (result.status == 200){
+                    var isOnline = "离线";
                     var data = result.data;
                     var user = data.user;
+                    if (user.isOnline == 1)
+                        isOnline = "在线";
                     $('#md_id').text(user.id);
                     $('#md_name').text(user.username);
                     $('#md_nick').text(user.nickname);
                     $('#md_face').text(user.faceImage);
                     $('#md_irs').text(data.illNums);
-                    $('#md_status').text(data.status);
+                    $('#md_status').text(isOnline);
                     $('#md_dl').text(data.serverName);
                     $('#md_date').text(user.registeTime);
                 }

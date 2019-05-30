@@ -15,11 +15,13 @@ $.ajax({
             var data = result.data;
             $('#totalUsers').html(data.userNums);
             $('#server_max').html(data.smaxNums);
-            $('#curIlle').html(data.banNums);
+            $('#curIlle').html(data.illegalNums);
+            $('#curUsers').html(data.banNums);
         }else {
             $('#totalUsers').html(0);
             $('#server_max').html(0);
             $('#curIlle').html(0);
+            $('#curUsers').html(0);
         }
     }
 });

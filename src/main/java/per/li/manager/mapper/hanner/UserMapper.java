@@ -20,7 +20,7 @@ public interface UserMapper{
     @Select(value = "select count(id) from user where id = #{arg0} or username = #{arg1} or nickname like '%${arg2}%'")
     int countByid(String arg0, String arg1, String arg2);
 
-    @Select(value = "select id,username,nickname,face_image as faceImage, registeTime from user where id=#{id}")
+    @Select(value = "select id,username,nickname,face_image as faceImage, registeTime, isOnline from user where id=#{id}")
     User selectOne(String id);
 
 

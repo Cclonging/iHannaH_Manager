@@ -5,13 +5,23 @@ $(document).ready(function () {
     var lineChart = $('#line-chart');
 
     if (lineChart.length > 0) {
+        var myDate = new Date(); //获取今天日期
+        myDate.setDate(myDate.getDate() - 7);
+        var dateArray = [];
+        var dateTemp;
+        var flag = 1;
+        for (var i = 0; i < 7; i++) {
+            dateTemp = (myDate.getMonth()+1)+"-"+myDate.getDate();
+            dateArray.push(dateTemp);
+            myDate.setDate(myDate.getDate() + flag);
+        }
         new Chart(lineChart, {
             type: 'line',
             data: {
-                labels: ["周一", "周二", "周三", "周四", "周五", "周六", "周日"],
+                labels: dateArray,
                 datasets: [{
                     label: 'Users',
-                    data: [12, 50, 3, 5, 2, 3, 20],
+                    data: [12, 10, 3, 5, 2, 3, 6],
                     backgroundColor: 'rgba(66, 165, 245, 0.5)',
                     borderColor: '#2196F3',
                     borderWidth: 1

@@ -4,9 +4,7 @@ package per.li.manager.controller;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import per.li.manager.entity.constant.ServerInfo;
 import per.li.manager.entity.hanner.User;
 import per.li.manager.entity.manager.Admin;
@@ -45,15 +43,15 @@ public class DataController {
      * @param curPage
      * @return
      */
-    @GetMapping("/getAllUsers")
-    public JSONResult getAllUsers(String curPage){
+    @GetMapping("/getAllUsers/{curPage}/info")
+    public JSONResult getAllUsers(@PathVariable("curPage") String curPage){
         int page = Integer.valueOf(curPage);
         AllUserData data = managerService.getAllUsers(page);
         return JSONResult.ok(data);
     }
 
-    @GetMapping("/getUser")
-    public JSONResult getUserById(String id, String curPage){
+    @GetMapping("/getUser/{id}/{curPage}/info")
+    public JSONResult getUserById(@PathVariable("id") String id, @PathVariable("curPage") String curPage){
             AllUserData data = managerService.getUsersById(id, Integer.valueOf(curPage));
             if (Objects.isNull(data.getUsers()) || data.getUsers().size() == 0){
                 return JSONResult.errorMsg("没有找到" + id);
@@ -72,8 +70,8 @@ public class DataController {
      * @throws IOException
      * @throws ServletException
      */
-    @GetMapping("/login")
-    public JSONResult login(String account, String pwd, HttpSession session, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    @GetMapping("/login/{account}/{pwd}/info")
+    public JSONResult login(@PathVariable String account, @PathVariable String pwd, HttpSession session, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         if (!Objects.isNull(account) && !Objects.isNull(pwd)){
             Admin admin = adminService.selectByAdmin(account, pwd);
             if (!Objects.isNull(admin)){
@@ -94,13 +92,13 @@ public class DataController {
         int userNums = managerService.countUsers();
         data.setUserNums(userNums);
         data.setBanNums(banNums);
-        data.setIllegalNums(banNums);
+        data.setIllegalNums(0);
         data.setSMaxNums(ServerInfo.SEEVER_MAX);
         return JSONResult.ok(data);
     }
 
-    @GetMapping("/getUserByid")
-    public JSONResult getUserByid(String id){
+    @GetMapping("/getUserByid/{id}/info")
+    public JSONResult getUserByid(@PathVariable String id){
         if (Objects.isNull(id)){
             return JSONResult.errorMsg("id 为空哦");
         }
@@ -113,7 +111,7 @@ public class DataController {
         userForDetail.setUser(user);
         userForDetail.setIllNums(mongoService.ircount(id));
         userForDetail.setServerName("BT-PANEL(上海)");
-        userForDetail.setStatus("在线");
+        //userForDetail.setStatus("在线");
         return JSONResult.ok(userForDetail);
     }
 }

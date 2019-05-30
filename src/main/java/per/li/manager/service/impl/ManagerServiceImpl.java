@@ -2,6 +2,7 @@ package per.li.manager.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,6 +28,9 @@ public class ManagerServiceImpl implements ManagerService {
     @Autowired
     private UserBanMapper userBanMapper;
 
+    @Autowired
+    RedisTemplate<String, String> redisTemplate;
+
     @Override
     public AllUserData getAllUsers(int page) {
         if (page < 0)
@@ -39,6 +43,7 @@ public class ManagerServiceImpl implements ManagerService {
         allUserData.setServerName(ServerInfo.SEEVER_NAME);
         allUserData.setPage(p);
         return allUserData;
+
     }
 
     @Override
@@ -48,7 +53,7 @@ public class ManagerServiceImpl implements ManagerService {
 
     @Override
     public int countBans() {
-        return userBanMapper.count();
+        return Integer.valueOf(redisTemplate.opsForValue().get("hannah_user_count"));
     }
 
     @Override

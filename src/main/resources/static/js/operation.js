@@ -33,7 +33,7 @@ function login() {
     }
     $.ajax({
         type: "GET",
-        url: "/data/login?account=" + account + "&pwd=" + pwd,
+        url: "/data/login/" + account + "/" + pwd + "/info",
         dataType: "json",
         success: function (result) {
             if (result.status == 500){

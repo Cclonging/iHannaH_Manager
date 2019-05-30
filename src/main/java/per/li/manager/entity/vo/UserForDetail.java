@@ -12,5 +12,4 @@ public class UserForDetail {
 
     private int illNums;
 
-    private String status;
 }

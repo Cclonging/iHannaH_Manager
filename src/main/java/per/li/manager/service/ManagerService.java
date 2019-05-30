@@ -13,8 +13,10 @@ public interface ManagerService {
     //获取所有用户数量
     int countUsers();
 
-    //获取所有被禁用户数量
+    //获取所有当前在线户数量
     int countBans();
+
+
 
     AllUserData getUsersById(String id, int page);
 

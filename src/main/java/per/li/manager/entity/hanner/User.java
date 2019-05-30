@@ -25,4 +25,6 @@ public class User {
     private String cid;
 
     private Date registeTime;
+
+    private int isOnline;
 }

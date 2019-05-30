@@ -1,7 +1,0 @@
-
-aliot：{
-	url: https://signin.aliyun.com/terminai.onaliyun.com/login.htm
-	account：admin@terminai.onaliyun.com
-	pwd：jhkj@20190415
-	uid：1853702935742327
-}
